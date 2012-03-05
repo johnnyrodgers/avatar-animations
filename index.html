@@ -5,63 +5,84 @@
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
+	<head>
+	  <meta charset="utf-8">
 
-  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
-       More info: h5bp.com/i/378 -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+	       More info: h5bp.com/i/378 -->
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
-  <meta name="description" content="">
+	  <title>Glitch Demo</title>
+	  <meta name="description" content="">
 
-  <!-- Mobile viewport optimized: h5bp.com/viewport -->
-  <meta name="viewport" content="width=device-width">
+	  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+	  <meta name="viewport" content="width=device-width">
 
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+	  <link rel="stylesheet" href="css/boilerplate.css">
+	  <link rel="stylesheet" href="css/style.css">
 
-  <link rel="stylesheet" href="css/style.css">
+	  <!-- All JavaScript at the bottom, except this Modernizr build.
+	       Modernizr enables HTML5 elements & feature detects for optimal performance.
+	       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+	  <script src="js/libs/modernizr-2.5.3.min.js"></script>
+	</head>
+	<body>
+	  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+	       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+	  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+	  <header>
+		<h1>Glitch Demo</h1>
+	  </header>
 
-  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+	  <div role="main" id="content">
+		<p>This basic demo shows how an avatar can be controlled and animated using the HTML5 Canvas. The character reacts when s/he bumps into the edges.</p>
+		<form id='settings'>
+			<label>A few cool avatars to try:</label> 			
+			<a href='index.html?player_tsid=PUVRA2047EH2RM8'>Xabu</a>
+			<a href='index.html?player_tsid=PM1JQ6ELM402E5B'>Peetza</a>
+			<a href='index.html?player_tsid=PUVRFRJ47EH2N3P'>Minme</a>
+			<a href='index.html?player_tsid=PLI16FSFK2I91'>Stoot</a>
+			<a href='index.html?player_tsid=PUV1DNS5B4H2AL9'>Sprot</a><br />
 
-  <!-- All JavaScript at the bottom, except this Modernizr build.
-       Modernizr enables HTML5 elements & feature detects for optimal performance.
-       Create your own custom Modernizr build: www.modernizr.com/download/ -->
-  <script src="js/libs/modernizr-2.5.3.min.js"></script>
-</head>
-<body>
-  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
-       chromium.org/developers/how-tos/chrome-frame-getting-started -->
-  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-  <header>
+			<label for='player_tsid'>Player TSID</label>
+			<input type='text' id='player_tsid' />
+			<input type='submit' value='Teleport from Ur' /><br />
+						
+			<label for='coordinates'>Coordinates</label>
+			<input type='text' id='coordinates' disabled='disabled' /><br />
 
-  </header>
-  <div role="main">
+			<label for='bounding_box'>Bounding box</label>
+			<input type='checkbox' id='bounding_box' />			
+		</form>
+		<canvas id="landscape" width="640" height="320"></canvas><br />
+	  	<p id="loading" style="text-align: center">Loading demo...</p>
+		<div id="instructions">
+			<p>
+				<span class="player_name"></span> is currently in <span class="player_location"></span>.
+			</p>
+			<ul class='controls'>
+				<li><a href='#' id='control_left'>&larr; walk left</a></li>
+				<li><a href='#' id='control_right'>&rarr; walk right</a></li>
+				<li><a href='#' id='control_jump'>&uarr; jump</a></li>
+				<li><a href='#' id='control_stop'>&darr; stop</a></li>
+				<li><a href='#' id='control_speak'>&crarr; speak</a></li>
+			</ul>
+		</div>
+	  </div>
 
-  </div>
-  <footer>
+	  <footer>
+		Demo created by <a href="http://johnnyrodgers.is">Johnny Rodgers</a> for Stewart Butterfield.<br />
+		Code at <a href='https://github.com/johnnyrodgers/avatar-animations'>johnnyrodgers/avatar-animations</a>, forked from <a href='https://github.com/tinyspeck/avatar-animations'>tinyspeck/avatar-animations</a>
+	  </footer>
 
-  </footer>
+	  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+	  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
 
+	  <!-- scripts concatenated and minified via build script -->
+	  <script src="js/plugins.js"></script>
+	  <script src="js/script.js"></script>
+	  <!-- end scripts -->
 
-  <!-- JavaScript at the bottom for fast page loading -->
-
-  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.1.min.js"><\/script>')</script>
-
-  <!-- scripts concatenated and minified via build script -->
-  <script src="js/plugins.js"></script>
-  <script src="js/script.js"></script>
-  <!-- end scripts -->
-
-  <!-- Asynchronous Google Analytics snippet. Change UA-XXXXX-X to be your site's ID.
-       mathiasbynens.be/notes/async-analytics-snippet -->
-  <script>
-    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-    s.parentNode.insertBefore(g,s)}(document,'script'));
-  </script>
-</body>
+	</body>
 </html>
